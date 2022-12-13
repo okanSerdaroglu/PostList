@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PostList</string>
+    <string name="http_exception_message">An unexpected error occurred</string>
+    <string name="io_exception_message">Could not reach server. Check your internet connection.</string>
 </resources>
