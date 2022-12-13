@@ -1,4 +1,7 @@
 package com.example.postlist.presentation.user_list
 
-class UserListScreen {
+import androidx.compose.runtime.Composable
+
+@Composable
+fun UserListScreen() {
 }
