@@ -1,4 +1,4 @@
-package com.example.postlist.ui.theme
+package com.example.postlist.presentation.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
