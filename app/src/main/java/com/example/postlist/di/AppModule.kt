@@ -8,7 +8,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -19,10 +18,9 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun providePostApi(client: OkHttpClient): PostApi {
+    fun providePostApi(): PostApi {
         return Retrofit.Builder()
             .baseUrl(BuildConfig.API_URL)
-            .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(PostApi::class.java)
