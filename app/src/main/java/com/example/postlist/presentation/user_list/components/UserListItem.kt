@@ -104,7 +104,8 @@ fun UserListItemPreview() {
         UsersUIState(
             imageUrl = "https://dummyimage.com/600/92c952&text=User+1",
             name = "User 1",
-            postCount = "5"
+            postCount = "5",
+            userId = 1
         )
     )
 }

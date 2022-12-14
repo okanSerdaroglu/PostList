@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.postlist.common.Resource
+import com.example.postlist.domain.model.PostsUIState
 import com.example.postlist.domain.model.UsersUIState
 import com.example.postlist.domain.use_case.getPosts.GetPosts
 import com.example.postlist.domain.use_case.getUsers.GetUsers
@@ -26,9 +27,10 @@ class UserListViewModel
 
     private var users: List<UsersUIState> = emptyList()
 
+    private var posts: List<PostsUIState> = emptyList()
+
     init {
         getUserList()
-        getPostList()
     }
 
     private fun getUserList() {
@@ -36,6 +38,7 @@ class UserListViewModel
             when (result) {
                 is Resource.Success -> {
                     setUserListSuccess(result)
+                    getPostList()
                 }
                 is Resource.Error -> {
                     setError(result.message)
@@ -51,7 +54,8 @@ class UserListViewModel
         getPosts().onEach { result ->
             when (result) {
                 is Resource.Success -> {
-
+                    posts = result.data ?: emptyList()
+                    updateUsers()
                 }
                 is Resource.Error -> {
                     setError(result.message)
@@ -82,5 +86,17 @@ class UserListViewModel
         )
     }
 
+    private fun getPostCount(userId: Int): Int {
+        return posts.filter { it.userId == userId }.size
+    }
+
+    private fun updateUsers() {
+        users.forEach {
+            it.postCount = getPostCount(it.userId).toString()
+        }
+        _state.value = UserListState(
+            users = users
+        )
+    }
 }
 

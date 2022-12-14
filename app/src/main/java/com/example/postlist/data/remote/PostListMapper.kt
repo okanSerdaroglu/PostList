@@ -12,9 +12,10 @@ class PostListMapper
         entityModel.forEach { post ->
             posts.add(
                 PostsUIState(
-                    String(),
-                    post.title.orEmpty(),
-                    post.body.orEmpty()
+                    bigImageUrl = String(),
+                    title = post.title.orEmpty(),
+                    body = post.body.orEmpty(),
+                    userId = post.userId ?: 0
                 )
             )
         }

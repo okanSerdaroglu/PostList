@@ -12,9 +12,10 @@ class UserListMapper
         entityModel.forEach { user ->
             users.add(
                 UsersUIState(
-                    user.url.orEmpty(),
-                    user.name.orEmpty(),
-                    String()
+                    imageUrl = user.url.orEmpty(),
+                    name = user.name.orEmpty(),
+                    postCount = String(),
+                    userId = user.userId ?: 0
                 )
             )
         }
