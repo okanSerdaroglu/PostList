@@ -2,6 +2,7 @@ package com.example.postlist.presentation.post_list
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -12,6 +13,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.postlist.presentation.post_list.components.PostImageContent
+import com.example.postlist.presentation.post_list.components.PostTextContent
 import com.example.postlist.presentation.post_list.view_model.PostListViewModel
 
 
@@ -25,13 +28,20 @@ fun PostListScreen(
     val context = LocalContext.current
     val state = viewModel.state.value
 
+    val url = viewModel.url.value
+
     Box(modifier = Modifier.fillMaxSize()) {
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-
+            item {
+                PostImageContent(imageUrl = url)
+            }
+            items(state.posts) {
+                PostTextContent(title = it.title, body = it.body)
+            }
         }
 
         (state.error ?: state.errorId?.let { context.getString(it) })?.let {

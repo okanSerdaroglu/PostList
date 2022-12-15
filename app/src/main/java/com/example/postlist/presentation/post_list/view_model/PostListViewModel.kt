@@ -24,6 +24,9 @@ class PostListViewModel
     private val _state = mutableStateOf(PostListState())
     val state: State<PostListState> = _state
 
+    private val _url = mutableStateOf(String())
+    val url: State<String> = _url
+
     private var posts: List<PostsUIState> = emptyList()
 
     var imageUrl = mutableStateOf(String())
@@ -68,6 +71,7 @@ class PostListViewModel
     }
 
     private fun setPostListSuccess(result: Resource<List<PostsUIState>>) {
+        _url.value = imageUrl.value
         posts = result.data ?: emptyList()
         _state.value = PostListState(
             posts = getPostList(userId = userId.value)

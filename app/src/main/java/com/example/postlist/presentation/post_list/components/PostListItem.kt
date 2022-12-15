@@ -20,7 +20,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 
 @Composable
-fun ImageContent(imageUrl: String) {
+fun PostImageContent(imageUrl: String) {
     Card(
         Modifier
             .fillMaxWidth()
@@ -44,7 +44,7 @@ fun ImageContent(imageUrl: String) {
 }
 
 @Composable
-fun TextContent(
+fun PostTextContent(
     title: String,
     body: String
 ) {
@@ -83,7 +83,7 @@ fun TextContent(
 @Preview
 @Composable
 fun TextContentPreview(){
-    TextContent(
+    PostTextContent(
         title = "dolorem eum magni eos aperiam quia",
         body = "ut aspernatur corporis harum nihil quis provident sequi\nmollitia nobis aliquid molestiae\nperspiciatis et ea nemo"
     )
@@ -92,7 +92,7 @@ fun TextContentPreview(){
 @Preview
 @Composable
 fun ImageContentPreview(){
-    ImageContent(
+    PostImageContent(
         imageUrl = "https://dummyimage.com/600/92c952&text=User+1"
     )
 }
