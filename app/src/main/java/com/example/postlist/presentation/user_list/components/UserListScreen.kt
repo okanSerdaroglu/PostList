@@ -14,7 +14,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.lazy.items
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.example.postlist.presentation.Screen
 import com.example.postlist.presentation.user_list.view_model.UserListViewModel
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
+
 
 @Composable
 fun UserListScreen(
@@ -23,6 +27,7 @@ fun UserListScreen(
 ) {
     val context = LocalContext.current
     val state = viewModel.state.value
+
     Box(modifier = Modifier.fillMaxSize()) {
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
@@ -30,7 +35,19 @@ fun UserListScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             items(state.users) { userUIState ->
-                UserListItem(userItemUIState = userUIState)
+                UserListItem(
+                    userItemUIState = userUIState,
+                    onItemClick = {
+                        navController.navigate(
+                            Screen.PostListScreen.route
+                                    + "/" + URLEncoder.encode(
+                                userUIState.imageUrl,
+                                StandardCharsets.UTF_8.toString()
+                            )
+                                    + "/${userUIState.userId}"
+                        )
+                    }
+                )
             }
         }
 

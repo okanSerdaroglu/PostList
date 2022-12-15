@@ -1,4 +1,4 @@
-package com.example.postlist.presentation.user_list.components
+package com.example.postlist.presentation.post_list.components
 
 import androidx.compose.runtime.mutableStateListOf
 import com.example.postlist.domain.model.PostItem

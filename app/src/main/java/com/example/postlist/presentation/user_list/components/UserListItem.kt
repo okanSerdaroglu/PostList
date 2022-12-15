@@ -1,5 +1,6 @@
 package com.example.postlist.presentation.user_list.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -21,12 +22,17 @@ import coil.request.ImageRequest
 import com.example.postlist.domain.model.UsersUIState
 
 @Composable
-fun UserListItem(userItemUIState: UsersUIState) {
+fun UserListItem(
+    userItemUIState: UsersUIState,
+    onItemClick: (userId:Int) -> Unit
+) {
     Card(
         Modifier
             .fillMaxWidth()
             .height(130.dp)
-            .padding(8.dp),
+            .padding(8.dp).clickable {
+               onItemClick(userItemUIState.userId)
+            },
         elevation = 4.dp,
         shape = RoundedCornerShape(20.dp)
     ) {
@@ -107,5 +113,5 @@ fun UserListItemPreview() {
             postCount = "5",
             userId = 1
         )
-    )
+    ) {}
 }

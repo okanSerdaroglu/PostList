@@ -4,6 +4,8 @@ import com.example.postlist.BuildConfig
 import com.example.postlist.data.remote.PostApi
 import com.example.postlist.data.repository.PostListRepositoryImpl
 import com.example.postlist.domain.repository.PostListRepository
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -35,4 +37,5 @@ object AppModule {
             postApi = postApi,
         )
     }
+
 }

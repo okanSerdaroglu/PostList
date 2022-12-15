@@ -5,7 +5,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.postlist.common.Resource
-import com.example.postlist.domain.model.PostItem
 import com.example.postlist.domain.model.PostsUIState
 import com.example.postlist.domain.model.UsersUIState
 import com.example.postlist.domain.use_case.getPosts.GetPosts
@@ -29,8 +28,6 @@ class UserListViewModel
     private var users: List<UsersUIState> = emptyList()
 
     private var posts: List<PostsUIState> = emptyList()
-
-    private val postItemList = mutableListOf<PostItem>()
 
     init {
         getUserList()
@@ -93,16 +90,6 @@ class UserListViewModel
         return posts.filter { it.userId == userId }
     }
 
-    private fun getUrl(userId: Int): String {
-        var imageUrl = String()
-        users.forEach {
-            if (it.userId == userId) {
-                imageUrl = it.imageUrl
-            }
-        }
-        return imageUrl
-    }
-
     private fun updateUsers() {
         users.forEach {
             it.postCount = getPostList(it.userId).size.toString()
@@ -110,24 +97,6 @@ class UserListViewModel
         _state.value = UserListState(
             users = users
         )
-    }
-
-    private fun preparePostItemList(userId: Int): List<PostItem> {
-        postItemList.add(
-            PostItem.Image(
-                getUrl(userId = userId)
-            )
-        )
-        posts.map {
-            postItemList.add(
-                PostItem.PostDetail(
-                    title = it.title,
-                    body = it.body,
-                    userId = it.userId
-                )
-            )
-        }
-        return postItemList
     }
 }
 
