@@ -2,7 +2,6 @@ package com.example.postlist.domain.use_case.getPosts
 
 import com.example.postlist.common.Resource
 import com.example.postlist.data.remote.PostListMapper
-import com.example.postlist.domain.model.PostItem
 import com.example.postlist.domain.model.PostsUIState
 import com.example.postlist.domain.repository.PostListRepository
 import com.example.postlist.domain.use_case.BaseUseCase
