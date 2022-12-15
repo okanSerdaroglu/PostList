@@ -46,7 +46,7 @@ class MainActivity : ComponentActivity() {
                                     type = NavType.StringType
                                 },
                                 navArgument(getString(R.string.user_id)) {
-                                    type = NavType.StringType
+                                    type = NavType.IntType
                                 },
                             )
                         ) {
@@ -57,12 +57,12 @@ class MainActivity : ComponentActivity() {
                             }
                             val userId = remember {
                                 val userId =
-                                    it.arguments?.getString(getString(R.string.user_id))
-                                userId ?: String()
+                                    it.arguments?.getInt(getString(R.string.user_id))
+                                userId ?: 0
                             }
                             PostListScreen(
+                                imageUrl = imageUrl,
                                 userId = userId,
-                                imageUrl = imageUrl
                             )
                         }
                     }
